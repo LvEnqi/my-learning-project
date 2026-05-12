@@ -1,0 +1,280 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Microsoft YaHei', sans-serif;
+  background: #1a1a2e;
+  color: #e0e0e0;
+  user-select: none;
+  overflow: hidden;
+  height: 100vh;
+}
+
+/* ── 标题栏 ── */
+.titlebar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 36px;
+  padding: 0 12px;
+  background: #16213e;
+  -webkit-app-region: drag;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 10;
+}
+.titlebar-text {
+  font-size: 13px;
+  color: #a0a0c0;
+}
+.titlebar-actions {
+  -webkit-app-region: no-drag;
+  display: flex;
+  gap: 6px;
+}
+.titlebar-btn {
+  background: none;
+  border: none;
+  color: #888;
+  font-size: 14px;
+  width: 28px;
+  height: 24px;
+  cursor: pointer;
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.titlebar-btn:hover {
+  background: #2a2a4a;
+  color: #e0e0e0;
+}
+.titlebar-btn.close:hover {
+  background: #e74c3c;
+  color: #fff;
+}
+
+/* ── 模式切换 ── */
+.mode-switch {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+  margin-top: 48px;
+  margin-bottom: 20px;
+}
+.mode-btn {
+  background: transparent;
+  border: 1px solid #2a2a4a;
+  color: #888;
+  padding: 6px 18px;
+  border-radius: 20px;
+  cursor: pointer;
+  font-size: 13px;
+  transition: all 0.2s;
+}
+.mode-btn:hover {
+  border-color: #e74c3c;
+  color: #e0e0e0;
+}
+.mode-btn.active {
+  background: #e74c3c;
+  border-color: #e74c3c;
+  color: #fff;
+}
+
+/* ── 计时器 ── */
+.timer-container {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 10px auto;
+}
+.progress-ring {
+  width: 220px;
+  height: 220px;
+  transform: rotate(-90deg);
+}
+.progress-bg {
+  fill: none;
+  stroke: #2a2a4a;
+  stroke-width: 6;
+}
+.progress-fill {
+  fill: none;
+  stroke: #e74c3c;
+  stroke-width: 6;
+  stroke-linecap: round;
+  stroke-dashoffset: 0;
+  transition: stroke-dashoffset 0.3s ease, stroke 0.3s ease;
+}
+.timer-display {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 56px;
+  font-weight: 300;
+  letter-spacing: 2px;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  line-height: 1;
+}
+.colon {
+  margin: 0 2px;
+}
+.timer-phase {
+  position: absolute;
+  bottom: 28px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 13px;
+  color: #888;
+}
+
+/* ── 控制按钮 ── */
+.controls {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 24px;
+  margin-top: 10px;
+}
+.ctrl-btn {
+  background: none;
+  border: none;
+  color: #888;
+  cursor: pointer;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s;
+}
+.ctrl-btn:hover {
+  background: #2a2a4a;
+  color: #e0e0e0;
+}
+.ctrl-btn.primary {
+  width: 72px;
+  height: 72px;
+  border: 2px solid #e74c3c;
+  color: #e74c3c;
+  font-size: 28px;
+}
+.ctrl-btn.primary:hover {
+  background: #e74c3c;
+  color: #fff;
+}
+
+/* ── 统计 ── */
+.stats {
+  text-align: center;
+  margin-top: 20px;
+  font-size: 13px;
+  color: #666;
+}
+
+/* ── 设置 ── */
+.settings-toggle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  margin-top: 16px;
+  font-size: 13px;
+  color: #555;
+  cursor: pointer;
+  transition: color 0.2s;
+}
+.settings-toggle:hover {
+  color: #888;
+}
+.settings-panel {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.3s ease;
+  margin: 0 40px;
+}
+.settings-panel.open {
+  max-height: 220px;
+  overflow-y: auto;
+}
+.setting-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 12px;
+}
+.setting-row label {
+  font-size: 13px;
+  color: #aaa;
+}
+.setting-row input {
+  width: 60px;
+  padding: 4px 8px;
+  background: #2a2a4a;
+  border: 1px solid #3a3a5a;
+  border-radius: 6px;
+  color: #e0e0e0;
+  font-size: 13px;
+  text-align: center;
+}
+.setting-row input:focus {
+  outline: none;
+  border-color: #e74c3c;
+}
+.save-btn {
+  display: block;
+  margin: 16px auto 0;
+  padding: 6px 24px;
+  background: #e74c3c;
+  border: none;
+  color: #fff;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 13px;
+}
+.save-btn:hover {
+  background: #c0392b;
+}
+
+/* ── 休息模式颜色 ── */
+body.break-mode .mode-btn.active {
+  background: #27ae60;
+  border-color: #27ae60;
+}
+body.break-mode .progress-fill {
+  stroke: #27ae60;
+}
+body.break-mode .ctrl-btn.primary {
+  border-color: #27ae60;
+  color: #27ae60;
+}
+body.break-mode .ctrl-btn.primary:hover {
+  background: #27ae60;
+  color: #fff;
+}
+body.break-mode .save-btn {
+  background: #27ae60;
+}
+body.break-mode .save-btn:hover {
+  background: #1e8449;
+}
+
+/* ── 闪烁动画（结束时） ── */
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.3; }
+}
+.timer-display.pulse {
+  animation: pulse 0.8s ease-in-out infinite;
+}
